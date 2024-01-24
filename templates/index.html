@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Raktprakh App</title>
+</head>
+<body>
+    <header class = "flex-container">
+        <div class="logo">
+            <img class = "inmas-logo" src=".\static\inmas-logo-removebg-preview (8).png" alt="">
+        </div>
+        <div class="main-headings">
+            <h1 class = "heading">रक्तपरख Raktparakh</h1>
+            <div class = "sub-heading">To Quantify Haemoglobin & OxyHaemoglobin</div>
+            <div class = "sub-sub-heading">Institute of Nuclear Medicine & Allied Sciences</div>
+            <div class = "sub-sub-heading">Defence R & D organization, Delhi</div>
+        </div>
+        <div style="margin: 0px 70px;"></div>
+    </header>
+    <main>
+        <div class = "video-container">
+            <div class="video1">
+                <video autoplay loop muted src = ".\static\flow-video.mp4"></video>
+            </div>
+            <div class="video2">
+                <video autoplay loop muted src = ".\static\rbc-video.mp4"></video>
+            </div>
+            <div class="video3"> 
+                <video autoplay loop muted src = ".\static\haemoglobin-video.mp4"></video>
+            </div>
+        </div>
+        <div class = "predictors">
+            <div class="haemo-pred">
+                <div class = "prediction-heading">HAEMOGLOBIN PREDICTOR</div>
+                <form action="/predict" method="POST" enctype="multipart/form-data">
+                    <div class="inputs">
+                        <input type="file" name="image" accept=".jpg, .jpeg, .png" required>
+                        <div class="cam-input">
+                            <button class = "open-cam">Take a Photo
+                            <img class = "cam-img" src="data:image/png;base64,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" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="prediction-perform">
+                        <button class="predictBtn" type="submit">Predict</button>
+                    </div>
+                </form>
+            </div>
+            <div class="oxyhaemo-pred">
+                <div class = "prediction-heading">OXYHAEMOGLOBIN PREDICTOR</div>
+                <form action="/predict" method="POST" enctype="multipart/form-data">
+                    <div class="inputs">
+                        <input type="file" name="image" accept=".jpg, .jpeg, .png" required>
+                        <div class="cam-input">
+                            <button class = "open-cam">Take a Photo
+                            <img class = "cam-img" src="data:image/png;base64,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" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="prediction-perform">
+                        <button class="predictBtn" type="submit">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="hidden">
+            <p>{{ prediction }} g/dL</p>
+            <img src="{{file_path}}" alt="Blood Sample Image" style="width: 150px; height: 150px;">
+            <a style="color: yellow;" href="/" style="font-size: 12px;">Back to Upload</a>
+        </div>
+        <div class="strip">
+            <div class="range">
+                <div class="range-heading">Normal range of Hb</div>
+                <ul>
+                <li>1-6 years: 9.5-14 g/dL.</li>
+                <li>6-18 years: 10-15.5 g/dL.</li>
+                <li>Adult men: 14-18 g/dL.</li>
+                <li>Adult women: 12-16 g/dL</li>
+                </ul>
+            </div>
+            <div class="strip-img-class">
+                <img class = "strip-img" src="./static/strip-img.png" alt="">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Made under supervision of : Dr. Damodar Gupta</p>
+        <p>Scientist 'F', INMAS </p>
+    </footer>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script src="./static/script.js"></script> 
+</body>
+</html>
